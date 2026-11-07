@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout Example</title>
+    <style>
+        /* Basic Reset & Box Sizing */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styling */
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+            border-radius: 4px;
+        }
+
+        /* Hamburger menu for mobile */
+        .menu-toggle {
+            display: none; /* Hidden by default on larger screens */
+            font-size: 2rem;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            color: #fff;
+        }
+
+        /* Main Layout */
+        .main-content {
+            display: flex; /* Flexbox for main content and sidebar */
+            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+            padding: 20px 0;
+        }
+
+        .article-section {
+            flex: 3; /* Takes 3 parts of the available space */
+            background: #fff;
+            padding: 20px;
+            margin-right: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .sidebar {
+            flex: 1; /* Takes 1 part of the available space */
+            background: #e9e9e9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Footer Styling */
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 20px;
+        }
+
+        /* --- Responsive Design (Media Queries) --- */
+        /* This section explicitly shows how to make a layout responsive using CSS, */
+        /* a task Webflow simplifies through visual tools. */
+        @media (max-width: 768px) {
+            header {
+                position: relative;
+                padding-top: 60px; /* Make space for toggle button */
+            }
+            nav ul {
+                flex-direction: column; /* Stack nav items vertically */
+                display: none; /* Hide nav by default on mobile */
+                width: 100%;
+                text-align: center;
+                background: #444;
+                position: absolute;
+                left: 0;
+                top: 60px;
+            }
+            nav ul.active {
+                display: flex; /* Show nav when active */
+            }
+            nav ul li {
+                margin: 0;
+                border-bottom: 1px solid #555;
+            }
+            nav ul li:last-child {
+                border-bottom: none;
+            }
+            nav ul li a {
+                display: block;
+                padding: 15px;
+            }
+            .menu-toggle {
+                display: block; /* Show hamburger menu on mobile */
+            }
+            .main-content {
+                flex-direction: column; /* Stack main content and sidebar vertically */
+            }
+            .article-section {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            .sidebar {
+                order: -1; /* Place sidebar above article on mobile */
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>My Responsive Website</h1>
+            <!-- This div represents a typical navigation element that would be built visually in Webflow -->
+            <nav>
+                <div class="menu-toggle" id="menuToggle">&#9776;</div>
+                <ul id="mainNav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <section class="article-section">
+            <h2>Welcome to Our Site!</h2>
+            <p>This is an example of a web page built with traditional HTML, CSS, and JavaScript. Every element you see, from the layout to the styling and interactivity, is defined by code.</p>
+            <p>In contrast, platforms like Webflow allow designers and entrepreneurs to achieve similar results without writing a single line of code. They provide a visual interface to drag-and-drop elements, apply styles, and define responsiveness.</p>
+            <p>This section demonstrates the main content area, which adapts its size and position based on the screen width due to the CSS media queries defined in the <code>&lt;style&gt;</code> block.</p>
+            <h3>Key Features</h3>
+            <ul>
+                <li>Responsive layout for different devices.</li>
+                <li>Basic navigation menu.</li>
+                <li>Interactive mobile menu toggle.</li>
+            </ul>
+        </section>
+
+        <aside class="sidebar">
+            <h3>Sidebar Content</h3>
+            <p>This sidebar contains supplementary information. On larger screens, it sits next to the main content. On smaller screens, it moves above the main content to optimize readability, thanks to the responsive CSS.</p>
+            <p>It's a common component in web design, often used for ads, related links, or author information.</p>
+        </aside>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Responsive Example. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // This JavaScript snippet adds basic interactivity, another aspect Webflow handles visually.
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            var nav = document.getElementById('mainNav');
+            nav.classList.toggle('active'); // Toggles the 'active' class to show/hide the navigation
+        });
+    </script>
+</body>
+</html>
